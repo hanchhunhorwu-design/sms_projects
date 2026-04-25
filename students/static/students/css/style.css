@@ -1,0 +1,54 @@
+/* list.html styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Card smooth */
+.card {
+  border-radius: 15px;
+}
+
+/* Table hover effect */
+.table tbody tr:hover {
+  background-color: #f1f7ff;
+  transition: 0.2s;
+}
+
+/* Buttons rounded */
+.btn {
+  border-radius: 8px;
+}
+
+/* Page spacing */
+.container {
+  padding-bottom: 50px;
+}
+/* add student form */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Center card */
+.form-card {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 15px;
+  border: none;
+}
+
+/* Input focus effect */
+.form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 8px rgba(25, 135, 84, 0.3);
+}
+
+/* Button style */
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Smooth background */
+body {
+  background: #f5f7fb;
+}
