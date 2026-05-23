@@ -1,0 +1,100 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Edit Workflow - Student Management System{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">Workflow</span>
+    <h1>Edit Workflow</h1>
+    <p>Pick a student and move straight to the update form.</p>
+  </div>
+  <div class="page-actions">
+    <a href="{% url 'students:student_list' %}" class="btn btn-outline-secondary btn-lg">
+      <i class="bi bi-arrow-left me-2"></i>Dashboard
+    </a>
+    <a href="{% url 'students:add_student' %}" class="btn btn-primary btn-lg">
+      <i class="bi bi-plus-lg me-2"></i>Add Student
+    </a>
+  </div>
+</div>
+
+<div class="workflow-strip">
+  <div>
+    <span>1</span>
+    <strong>Select</strong>
+    <p>Find the record you need.</p>
+  </div>
+  <div>
+    <span>2</span>
+    <strong>Edit</strong>
+    <p>Change the right fields.</p>
+  </div>
+  <div>
+    <span>3</span>
+    <strong>Save</strong>
+    <p>Save and continue working.</p>
+  </div>
+</div>
+
+<div class="card app-card">
+  <div class="section-header">
+    <div>
+      <h2>Ready to Edit</h2>
+      <p>Each row has one clear edit action for faster updates.</p>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table student-table align-middle mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Student</th>
+          <th scope="col">Age</th>
+          <th scope="col">Course</th>
+          <th scope="col" class="text-end">Next Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td>
+            <div class="student-identity">
+              <span class="avatar">{{ student.name|first|upper }}</span>
+              <div>
+                <div class="student-name">{{ student.name }}</div>
+                <small>ID #{{ student.id }}</small>
+              </div>
+            </div>
+          </td>
+          <td>{{ student.age }}</td>
+          <td><span class="course-pill">{{ student.course }}</span></td>
+          <td>
+            <div class="table-actions">
+              <a
+                href="{% url 'students:update_student' student.id %}"
+                class="btn btn-primary btn-sm"
+              >
+                <i class="bi bi-pencil-square me-1"></i>Edit Now
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">
+            <div class="empty-state">
+              <i class="bi bi-pencil-square"></i>
+              <h2>No records to edit</h2>
+              <p>Add a student first, then this workflow will be ready to use.</p>
+              <a href="{% url 'students:add_student' %}" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-2"></i>Add Student
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

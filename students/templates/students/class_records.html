@@ -1,0 +1,49 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Class Records - Student Management System{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">Courses</span>
+    <h1>Class Records</h1>
+    <p>Review course groups and understand where students are registered.</p>
+  </div>
+  <div class="page-actions">
+    <a href="{% url 'students:student_list' %}" class="btn btn-outline-secondary btn-lg">
+      <i class="bi bi-arrow-left me-2"></i>Dashboard
+    </a>
+    <a href="{% url 'students:add_student' %}" class="btn btn-primary btn-lg">
+      <i class="bi bi-plus-lg me-2"></i>Add Student
+    </a>
+  </div>
+</div>
+
+<div class="section-title">
+  <h2>Course Summary</h2>
+  <p>Each card is built from the course name saved on student records.</p>
+</div>
+
+<div class="record-grid">
+  {% for course in courses %}
+  <div class="record-card">
+    <span class="summary-icon green"><i class="bi bi-journal-bookmark"></i></span>
+    <div>
+      <h2>{{ course.course }}</h2>
+      <p>{{ course.total }} student{{ course.total|pluralize }}</p>
+    </div>
+  </div>
+  {% empty %}
+  <div class="card app-card">
+    <div class="empty-state">
+      <i class="bi bi-journal-bookmark"></i>
+      <h2>No class records</h2>
+      <p>Add students with course names and class records will appear here.</p>
+      <a href="{% url 'students:add_student' %}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-2"></i>Add Student
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

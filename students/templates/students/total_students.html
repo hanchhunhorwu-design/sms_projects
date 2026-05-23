@@ -1,0 +1,83 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Total Students - Student Management System{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">Overview</span>
+    <h1>Total Students</h1>
+    <p>See every saved student record in one clean table.</p>
+  </div>
+  <div class="page-actions">
+    <a href="{% url 'students:student_list' %}" class="btn btn-outline-secondary btn-lg">
+      <i class="bi bi-arrow-left me-2"></i>Dashboard
+    </a>
+    <a href="{% url 'students:add_student' %}" class="btn btn-primary btn-lg">
+      <i class="bi bi-plus-lg me-2"></i>Add Student
+    </a>
+  </div>
+</div>
+
+<div class="metric-hero">
+  <span class="metric-icon"><i class="bi bi-people"></i></span>
+  <div>
+    <strong>{{ student_count }}</strong>
+    <span>Total student records</span>
+  </div>
+</div>
+
+<div class="card app-card">
+  <div class="section-header">
+    <div>
+      <h2>All Students</h2>
+      <p>Use this page when you want a focused view of all students.</p>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table student-table align-middle mb-0">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Age</th>
+          <th scope="col">Course</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+        <tr>
+          <td><span class="row-number">{{ forloop.counter }}</span></td>
+          <td>
+            <div class="student-identity">
+              <span class="avatar">{{ student.name|first|upper }}</span>
+              <div>
+                <div class="student-name">{{ student.name }}</div>
+                <small>Student profile</small>
+              </div>
+            </div>
+          </td>
+          <td><span class="id-pill">#{{ student.id }}</span></td>
+          <td>{{ student.age }}</td>
+          <td><span class="course-pill">{{ student.course }}</span></td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">
+            <div class="empty-state">
+              <i class="bi bi-people"></i>
+              <h2>No students yet</h2>
+              <p>Add your first student and the total will update automatically.</p>
+              <a href="{% url 'students:add_student' %}" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-2"></i>Add Student
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

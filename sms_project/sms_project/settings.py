@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tj)9!dzvlcl$*f!cx0b81n+(9yrn1sg%yphq7l9#o(2r+h_2df'
+SECRET_KEY = 'django-insecure-su^9azn)%azb4=zb$(y9p5yxx8^t+vflcg&p+h1+x^ypw5365z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'students',
 ]
 
 MIDDLEWARE = [
@@ -59,11 +58,9 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.csrf',
             ],
         },
     },
@@ -118,21 +115,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# CSRF Configuration
-CSRF_COOKIE_SECURE = False  # Set to False for development (no HTTPS)
-SESSION_COOKIE_SECURE = False  # Set to False for development
-CSRF_COOKIE_HTTPONLY = False  # Allow JavaScript to access CSRF token if needed
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']
-
-ALLOWED_HOSTS = ["*"]
-
-import os
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
